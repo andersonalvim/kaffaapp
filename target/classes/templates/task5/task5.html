@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+   <head>
+      <meta charset = "ISO-8859-1"/>
+      <title>Task 5</title>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" href="style/styleCss.css"/>
+      
+      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      
+      <script>
+         $(document).ready(function(){
+            $.getJSON("http://worldclockapi.com/api/json/utc/now", function(result){
+               $.each(result, function(key,value) {
+            	   if(key == 'currentDateTime')
+                  $("#utcJson").append(value);
+               }); 
+            });
+            
+            
+            var d = new Date();
+            $("#hora").append(d);
+            
+            var local = Intl.DateTimeFormat().resolvedOptions().timeZone;
+     	   $("#local").append(local);
+     	   
+     	   
+         });
+      </script>
+   </head>
+   
+   <body>
+   	
+   	<div class="container" >
+   	<h4>Task 5 - Rest Client - World Clock</h4>
+   	  <h6>UTC:</h6>
+      <div id = "utcJson"> </div>
+      <h6>Local:</h6>
+      <div id = "local"> </div>
+      <h6>Hora:</h6>
+      <div id = "hora"> </div>
+    </div>
+      
+      
+   </body>
+</html>

@@ -1,0 +1,51 @@
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	  
+<head>
+	<title>Kaffa App</title>
+	<!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" href="style/styleCss.css"/>
+	 
+</head>	  
+
+<body>
+
+<h1>Todo List</h1>
+<h3><a href="/registerTodo" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Register a Task</a></h3>
+
+<table class="container" >
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Date</th>
+				<th>Hour</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="todo : ${todos}">
+		
+				<td><span th:text="${todo.title}"></span></td>
+				<td><span th:text="${todo.date}"></span></td>
+				<td><span th:text="${todo.hour}"></span></td>
+				<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('TC#deleteTodo').arg(0, todo.codigo)).build()}"> <i class="material-icons left" >delete</i> Delete </a></td>
+			</tr>
+	
+		</tbody>
+	</table>
+	
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
+
+</body>
+
+
+
+</html>
